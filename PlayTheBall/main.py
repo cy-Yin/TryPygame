@@ -4,6 +4,7 @@ import traceback
 from pygame.locals import *
 from random import *
 
+
 # "Ball" class inherits from parent class "Sprite"
 class Ball(pygame.sprite.Sprite):
     def __init__(self, grayball_image, greenball_image, position, speed, bg_size, target):
@@ -27,8 +28,7 @@ class Ball(pygame.sprite.Sprite):
         if self.control:
             self.rect = self.rect.move(self.speed)
         else:
-            self.rect = self.rect.move((self.side[0] * self.speed[0], \
-                                        self.side[1] * self.speed[1]))
+            self.rect = self.rect.move((self.side[0] * self.speed[0], self.side[1] * self.speed[1]))
 
         # 如果小球的左侧出了边界，那么将小球左侧的位置改为右侧的边界
         # 这样便实现了从左边进入，右边出来的效果
@@ -58,14 +58,11 @@ class Glass(pygame.sprite.Sprite):
 
         self.glass_image = pygame.image.load(glass_image).convert_alpha()
         self.glass_rect = self.glass_image.get_rect()
-        self.glass_rect.left, self.glass_rect.top = \
-                             (bg_size[0] - self.glass_rect.width) // 2, \
-                             bg_size[1] - self.glass_rect.height
+        self.glass_rect.left, self.glass_rect.top = (bg_size[0] - self.glass_rect.width) // 2, bg_size[1] - self.glass_rect.height
 
         self.mouse_image = pygame.image.load(mouse_image).convert_alpha()
         self.mouse_rect = self.mouse_image.get_rect()
-        self.mouse_rect.left, self.mouse_rect.top = \
-                              self.glass_rect.left, self.glass_rect.top
+        self.mouse_rect.left, self.mouse_rect.top = self.glass_rect.left, self.glass_rect.top
         pygame.mouse.set_visible(False)
         
 def main():
@@ -102,9 +99,12 @@ def main():
 
     # 5 个坑的范围，因为 100% 命中太难，所以只要在范围内即可
     # 每个元素：(x1, x2, y1, y2)
-    hole = [(117, 119, 199, 201), (225, 227, 390, 392), \
-            (503, 505, 320, 322), (698, 700, 192, 194), \
-            (906, 908, 419, 421)]
+    hole = [(117, 119, 199, 201), 
+            (225, 227, 390, 392), 
+            (503, 505, 320, 322), 
+            (698, 700, 192, 194), 
+            (906, 908, 419, 421)
+    ]
 
     # 存放要打印的消息
     msgs = []
@@ -194,8 +194,7 @@ def main():
                     for each in group:
                         if each.control:
                             for i in hole:
-                                if i[0] <= each.rect.left <= i[1] and \
-                                   i[2] <= each.rect.top <= i[3]:
+                                if i[0] <= each.rect.left <= i[1] and i[2] <= each.rect.top <= i[3]:
                                     # 播放音效
                                     hole_sound.play()
                                     each.speed = [0, 0]
@@ -214,8 +213,7 @@ def main():
                                 pygame.time.delay(3000)
                                 # 打印“然并卵”
                                 msg = pygame.image.load(r"PlayTheBall\win.png").convert_alpha()
-                                msg_pos = (width - msg.get_width()) // 2, \
-                                          (height - msg.get_height()) // 2
+                                msg_pos = (width - msg.get_width()) // 2, (height - msg.get_height()) // 2
                                 msgs.append((msg, msg_pos))
                                 laugh_sound.play()
 
