@@ -113,7 +113,7 @@ def main():
     balls = []
     group = pygame.sprite.Group()
 
-    # 创建 5 个小球
+    # create 5 balls
     for i in range(5):
         # set random positions and speeds for the balls respectively
         position = randint(0, width-100), randint(0, height-100)
