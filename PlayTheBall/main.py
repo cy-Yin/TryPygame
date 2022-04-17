@@ -4,10 +4,10 @@ import traceback
 from pygame.locals import *
 from random import *
 
-# 球类继承自Spirte类
+# "Ball" class inherits from parent class "Sprite"
 class Ball(pygame.sprite.Sprite):
     def __init__(self, grayball_image, greenball_image, position, speed, bg_size, target):
-        # 初始化动画精灵
+        # initialize the pygame.sprite
         pygame.sprite.Sprite.__init__(self)
 
         self.grayball_image = pygame.image.load(grayball_image).convert_alpha()
@@ -109,13 +109,13 @@ def main():
     # 存放要打印的消息
     msgs = []
 
-    # 用来存放小球对象的列表
+    # create a list to store the balls
     balls = []
     group = pygame.sprite.Group()
 
     # 创建 5 个小球
     for i in range(5):
-        # 位置随机，速度随机
+        # set random positions and speeds for the balls respectively
         position = randint(0, width-100), randint(0, height-100)
         speed = [randint(1, 10), randint(1, 10)]
         ball = Ball(grayball_image, greenball_image, position, speed, bg_size, 5 * (i+1))
@@ -269,7 +269,7 @@ def main():
 
 
 if __name__ == "__main__":
-    # 这样做的好处是双击打开时如果出现异常可以报告异常，而不是一闪而过！
+    # if exceptions appears when running the code, they will be reported rather than be ignored
     try:
         main()
     except SystemExit:
