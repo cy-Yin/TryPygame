@@ -14,7 +14,7 @@ class Ball(pygame.sprite.Sprite):
         self.grayball_image = pygame.image.load(grayball_image).convert_alpha()
         self.greenball_image = pygame.image.load(greenball_image).convert_alpha()
         self.rect = self.grayball_image.get_rect()
-        # 将小球放在指定位置
+        # put the ball in the certain position
         self.rect.left, self.rect.top = position
         self.side = [choice([-1, 1]), choice([-1, 1])]
         self.speed = speed
@@ -30,17 +30,14 @@ class Ball(pygame.sprite.Sprite):
         else:
             self.rect = self.rect.move((self.side[0] * self.speed[0], self.side[1] * self.speed[1]))
 
-        # 如果小球的左侧出了边界，那么将小球左侧的位置改为右侧的边界
-        # 这样便实现了从左边进入，右边出来的效果
+        # If the ball passes through the top of the page, it will appear from the bottom. 
+        # Similarly, if the ball comes in from the left, it comes out on the right.
         if self.rect.right <= 0:
             self.rect.left = self.width
-
         elif self.rect.left >= self.width:
             self.rect.right = 0
-
         elif self.rect.bottom <= 0:
             self.rect.top = self.height
-
         elif self.rect.top >= self.height:
             self.rect.bottom = 0
 
@@ -68,29 +65,29 @@ class Glass(pygame.sprite.Sprite):
 def main():
     pygame.init()
 
-    grayball_image = r"PlayTheBall\gray_ball.png"
-    greenball_image = r"PlayTheBall\green_ball.png"
-    glass_image = r"PlayTheBall\glass.png"
-    mouse_image = r"PlayTheBall\hand.png"
-    bg_image = r"PlayTheBall\background.png"
+    grayball_image = r"gray_ball.png"
+    greenball_image = r"green_ball.png"
+    glass_image = r"glass.png"
+    mouse_image = r"hand.png"
+    bg_image = r"background.png"
 
     running = True
 
-    # 添加魔性的背景音乐
-    pygame.mixer.music.load(r"PlayTheBall\bg_music.mp3")
+    # add the background music
+    pygame.mixer.music.load(r"bg_music.mp3")
     pygame.mixer.music.play()
 
-    # 添加音效
-    loser_sound = pygame.mixer.Sound(r"PlayTheBall\loser.wav")
-    laugh_sound = pygame.mixer.Sound(r"PlayTheBall\laugh.wav")
-    winner_sound = pygame.mixer.Sound(r"PlayTheBall\winner.wav")
-    hole_sound = pygame.mixer.Sound(r"PlayTheBall\hole.wav")
+    # add the sound effects
+    loser_sound = pygame.mixer.Sound(r"loser.wav")
+    laugh_sound = pygame.mixer.Sound(r"laugh.wav")
+    winner_sound = pygame.mixer.Sound(r"winner.wav")
+    hole_sound = pygame.mixer.Sound(r"hole.wav")
 
-    # 音乐播放完时游戏结束
+    # game over when the music ends
     GAMEOVER = USEREVENT
     pygame.mixer.music.set_endevent(GAMEOVER)
 
-    # 根据背景图片指定游戏界面尺寸
+    # set the size of the interface according to the background picture
     bg_size = width, height = 1024, 681
     screen = pygame.display.set_mode(bg_size)
     pygame.display.set_caption("Play the ball - Demo")
@@ -114,12 +111,13 @@ def main():
     group = pygame.sprite.Group()
 
     # create 5 balls
-    for i in range(5):
-        # set random positions and speeds for the balls respectively
+    BALL_NUM=5
+    for i in range(BALL_NUM):
+        # set random positions and speeds for the balls respectively at the beginning
         position = randint(0, width-100), randint(0, height-100)
         speed = [randint(1, 10), randint(1, 10)]
         ball = Ball(grayball_image, greenball_image, position, speed, bg_size, 5 * (i+1))
-        # 检测新诞生的球是否会卡住其他球
+        # check whether the latest created ball influences other balls (make other balls stuck)
         while pygame.sprite.spritecollide(ball, group, False, pygame.sprite.collide_circle):
             ball.rect.left, ball.rect.top = randint(0, width-100), randint(0, height-100)
         balls.append(ball)
@@ -212,7 +210,7 @@ def main():
                                 winner_sound.play()
                                 pygame.time.delay(3000)
                                 # 打印“然并卵”
-                                msg = pygame.image.load(r"PlayTheBall\win.png").convert_alpha()
+                                msg = pygame.image.load(r"win.png").convert_alpha()
                                 msg_pos = (width - msg.get_width()) // 2, (height - msg.get_height()) // 2
                                 msgs.append((msg, msg_pos))
                                 laugh_sound.play()
@@ -245,9 +243,10 @@ def main():
                 screen.blit(each.grayball_image, each.rect)
 
         for each in group:
-            # 先从组中移出当前球
+            # firstly remove this ball from the group to avoid detecting whether the ball collides with itself
             group.remove(each)
-            # 判断当前球与其他球是否相撞
+            # use the "collision detection" function --> detect the collision of this circle
+            # determine whether the current ball collides with other(s)
             if pygame.sprite.spritecollide(each, group, False, pygame.sprite.collide_circle):
                 each.side[0] = -each.side[0]
                 each.side[1] = -each.side[1]
@@ -256,7 +255,7 @@ def main():
                     each.side[0] = -1
                     each.side[1] = -1
                     each.control = False
-            # 将当前球添加回组中
+            # add this judged ball back to the group
             group.add(each)
 
         for msg in msgs:
