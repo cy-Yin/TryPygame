@@ -14,3 +14,20 @@
 
 ## 2.  FlightFight
 
+一款消灭敌方飞机的游戏
+
+代码量800行左右
+
+一共有以下几个模块：
+
+- main.py —— 主模块
+- myplane.py —— 定义我方飞机
+- enemy.py —— 定义敌方飞机
+- bullet.py —— 定义子弹
+- supply.py —— 定义补给
+
+资源文件如下：
+
+- sound —— 声音、音效资源
+- images —— 图片资源
+- fonts —— 字体资源
