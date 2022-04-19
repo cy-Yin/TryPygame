@@ -34,7 +34,7 @@
 - fonts —— 字体资源
 
 
------------------- CONTENTS TRANSLATED ARE AS FOLLOWS ---------------
+--------------------------------- CONTENTS TRANSLATED ARE AS FOLLOWS ---------------------------------
 
 ### 1. Game Instruction
 - The enemies totally have three types of planes: large, medium and small ones which have a high,medium and low speed respectively.
