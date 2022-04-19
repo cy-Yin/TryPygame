@@ -31,7 +31,7 @@
 
 - sound —— 声音、音效资源
 - images —— 图片资源
-- fonts —— 字体资源
+- font —— 字体资源
 
 
 --------------------------------- CONTENTS TRANSLATED ARE AS FOLLOWS ---------------------------------
@@ -69,4 +69,4 @@ File folders containing the sources about game：
 
 - sound
 - images
-- fonts
+- font
