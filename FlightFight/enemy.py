@@ -91,7 +91,7 @@ class MidEnemy(pygame.sprite.Sprite):
 
 # define the large enemy plane
 class LargeEnemy(pygame.sprite.Sprite):
-    # one medium enemy plane needs 20 bullets to destroy
+    # one large enemy plane needs 20 bullets to destroy
     energy = 20
 
     def __init__(self, bg_size):
