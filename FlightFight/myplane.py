@@ -23,7 +23,7 @@ class MyPlane(pygame.sprite.Sprite):
         self.speed = 10
         # mark whether it is destroyed
         self.active = True
-        # set the invincible state during which my new-born plane cannot be destroyed
+        # set the invincible status during which my new-born plane cannot be destroyed
         self.invincible = False
         # to use sprite.collide_mask function to check the crack more accurately
         self.mask = pygame.mask.from_surface(self.image1)
