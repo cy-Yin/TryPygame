@@ -72,6 +72,7 @@ class MidEnemy(pygame.sprite.Sprite):
         # to use sprite.collide_mask function to check the crack more accurately
         self.mask = pygame.mask.from_surface(self.image)
         self.energy = MidEnemy.energy
+        # check whether the medium enemy plane is hit
         self.hit = False
         self.rect.left = randint(0, self.width - self.rect.width)
         self.rect.top = randint(-10 * self.height, -self.height)
@@ -122,6 +123,7 @@ class LargeEnemy(pygame.sprite.Sprite):
         # to use sprite.collide_mask function to check the crack more accurately
         self.mask = pygame.mask.from_surface(self.image1)
         self.energy = LargeEnemy.energy
+        # check whether the large enemy plane is hit
         self.hit = False
         self.rect.left = randint(0, self.width - self.rect.width)
         self.rect.top = randint(-15 * self.height, 5 * self.height)
