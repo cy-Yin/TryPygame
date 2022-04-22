@@ -34,6 +34,14 @@
 - font —— 字体资源
 
 
+## 3. 游戏操作
+- W : 我方飞机上移
+- S : 我方飞机下移
+- A : 我方飞机左移
+- D : 我方飞机右移
+- SPACE : 使用全屏炸弹
+
+
 --------------------------------- CONTENTS TRANSLATED ARE AS FOLLOWS ---------------------------------
 
 ### 1. Game Instruction
@@ -70,3 +78,10 @@ File folders containing the sources about game：
 - sound
 - images
 - font
+
+## 3. Game Operation
+- W : move upward
+- S : move downward
+- A : move left
+- D : move right
+- SPACE : use the full-screen bomb
