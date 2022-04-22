@@ -10,9 +10,8 @@ class Bullet_Supply(pygame.sprite.Sprite):
         self.image = pygame.image.load(r"images\bullet_supply.png").convert_alpha()
 
         self.rect = self.image.get_rect()
-        self.rect.left, self.rect.bottom = randint(0, self.width-self.rect.width), -100
-
         self.width, self.height = bg_size[0], bg_size[1]
+        self.rect.left, self.rect.bottom = randint(0, self.width-self.rect.width), -100
 
         self.speed = 5
         # check whether it is time to give the supply item and whether it is available
@@ -39,10 +38,9 @@ class Bomb_Supply(pygame.sprite.Sprite):
         self.image = pygame.image.load(r"images\bomb_supply.png").convert_alpha()
 
         self.rect = self.image.get_rect()
-        self.rect.left, self.rect.bottom = randint(0, self.width-self.rect.width), -100
-
         self.width, self.height = bg_size[0], bg_size[1]
-
+        self.rect.left, self.rect.bottom = randint(0, self.width-self.rect.width), -100
+        
         self.speed = 5
         # check whether it is time to give the supply item and whether it is available
         self.active = False
