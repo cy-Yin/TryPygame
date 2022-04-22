@@ -2,7 +2,7 @@ import pygame
 from random import *
 
 
-# define the supply of double bullets per second
+# define the supply of "super" bullets
 class BUllet_Supply(pygame.sprite.Sprite):
     def __init__(self, bg_size):
         pygame.sprite.Sprite.__init__(self)
