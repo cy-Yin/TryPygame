@@ -126,7 +126,7 @@ class LargeEnemy(pygame.sprite.Sprite):
         # check whether the large enemy plane is hit
         self.hit = False
         self.rect.left = randint(0, self.width - self.rect.width)
-        self.rect.top = randint(-15 * self.height, 5 * self.height)
+        self.rect.top = randint(-15 * self.height, -5 * self.height)
 
     def move(self):
         if self.rect.top < self.height:
